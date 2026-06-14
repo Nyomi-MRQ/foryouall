@@ -1,55 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You All</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You All</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <h1>For You All</h1>
-
-    <nav>
-        <a href="#socks">Socks</a>
-        <a href="#shirts">Shirts</a>
-        <a href="#cart">Cart</a>
-    </nav>
+  <h1>For You All</h1>
+  <nav>
+    <a href="#shop">Shop</a>
+    <a href="#about">About</a>
+    <a href="#cart">Cart</a>
+  </nav>
 </header>
 
 <section class="hero">
+  <div>
     <h2>FOR YOU ALL</h2>
     <p>Clothing designed for everyone.</p>
+    <a href="#shop" class="btn">Shop Now</a>
+  </div>
 </section>
 
-<section id="socks">
-    <h2 class="section-title">Shop Socks</h2>
-    <div class="products" id="sock-products"></div>
+<section id="shop" class="shop">
+  <h2>Shop Socks</h2>
+  <div class="products" id="products"></div>
 </section>
 
-<section id="shirts">
-    <h2 class="section-title">Shop Shirts</h2>
-    <div class="products" id="shirt-products"></div>
+<section class="shop">
+  <h2>Shop Shirts</h2>
+  <div class="products" id="shirts"></div>
 </section>
 
-<section id="cart">
-    <h2 class="section-title">Shopping Cart</h2>
+<section id="cart" class="cart">
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <h3>Total: $<span id="total">0</span></h3>
+  <button class="checkout">Checkout Coming Soon</button>
+</section>
 
-    <div id="cart-items"></div>
-
-    <h3>Total: $<span id="cart-total">0</span></h3>
-
-    <button class="checkout-btn">
-        Checkout Coming Soon
-    </button>
+<section id="about" class="about">
+  <h2>About For You All</h2>
+  <p>
+    For You All is a colorful, inclusive clothing brand made for comfort,
+    self-expression, and everyday style.
+  </p>
 </section>
 
 <footer>
-    © 2026 For You All
+  <p>© 2026 For You All</p>
 </footer>
 
 <script src="script.js"></script>
-
 </body>
 </html>

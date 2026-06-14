@@ -1,155 +1,64 @@
 const socks = [
-{
-name:"White Socks",
-price:14,
-image:"images/white-socks.png"
-},
-{
-name:"Black Socks",
-price:14,
-image:"images/black-socks.png"
-},
-{
-name:"Green Socks",
-price:14,
-image:"images/green-socks.png"
-},
-{
-name:"Blue Socks",
-price:14,
-image:"images/blue-socks.png"
-},
-{
-name:"Yellow Socks",
-price:14,
-image:"images/yellow-socks.png"
-},
-{
-name:"Orange Socks",
-price:14,
-image:"images/orange-socks.png"
-},
-{
-name:"Purple Socks",
-price:14,
-image:"images/purple-socks.png"
-},
-{
-name:"Pink Socks",
-price:14,
-image:"images/pink-socks.png"
-}
+  { name: "White Socks", price: 14, color: "white", text: "black" },
+  { name: "Black Socks", price: 14, color: "black", text: "white" },
+  { name: "Green Socks", price: 14, color: "green", text: "white" },
+  { name: "Blue Socks", price: 14, color: "royalblue", text: "white" },
+  { name: "Yellow Socks", price: 14, color: "gold", text: "black" },
+  { name: "Orange Socks", price: 14, color: "orange", text: "black" },
+  { name: "Purple Socks", price: 14, color: "mediumorchid", text: "white" },
+  { name: "Pink Socks", price: 14, color: "pink", text: "black" }
 ];
 
 const shirts = [
-{
-name:"White Shirt",
-price:24,
-image:"images/white-shirt.png"
-},
-{
-name:"Pink Shirt",
-price:24,
-image:"images/pink-shirt.png"
-},
-{
-name:"Purple Shirt",
-price:24,
-image:"images/purple-shirt.png"
-}
+  { name: "White Shirt", price: 24, color: "white", text: "black" },
+  { name: "Pink Shirt", price: 24, color: "pink", text: "black" },
+  { name: "Purple Shirt", price: 24, color: "plum", text: "black" }
 ];
 
 let cart = [];
 
-function displayProducts(){
+function renderProducts(items, containerId) {
+  const container = document.getElementById(containerId);
 
-const sockContainer =
-document.getElementById("sock-products");
+  items.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "product";
 
-const shirtContainer =
-document.getElementById("shirt-products");
+    div.innerHTML = `
+      <div class="product-img" style="background:${item.color}; color:${item.text};">
+        <div>
+          <div class="hand">🌈✋</div>
+          <div class="logo">For You All</div>
+        </div>
+      </div>
+      <h3>${item.name}</h3>
+      <p>$${item.price}</p>
+      <button onclick="addToCart('${item.name}', ${item.price})">Add to Cart</button>
+    `;
 
-socks.forEach(product => {
-
-sockContainer.innerHTML += `
-<div class="product-card">
-
-<img src="${product.image}"
-alt="${product.name}">
-
-<h3>${product.name}</h3>
-
-<p>$${product.price}</p>
-
-<button onclick="addToCart('${product.name}',${product.price})">
-Add To Cart
-</button>
-
-</div>
-`;
-
-});
-
-shirts.forEach(product => {
-
-shirtContainer.innerHTML += `
-<div class="product-card">
-
-<img src="${product.image}"
-alt="${product.name}">
-
-<h3>${product.name}</h3>
-
-<p>$${product.price}</p>
-
-<button onclick="addToCart('${product.name}',${product.price})">
-Add To Cart
-</button>
-
-</div>
-`;
-
-});
-
+    container.appendChild(div);
+  });
 }
 
-function addToCart(name,price){
-
-cart.push({
-name,
-price
-});
-
-updateCart();
-
+function addToCart(name, price) {
+  cart.push({ name, price });
+  updateCart();
 }
 
-function updateCart(){
+function updateCart() {
+  const cartItems = document.getElementById("cart-items");
+  const total = document.getElementById("total");
 
-const cartItems =
-document.getElementById("cart-items");
+  cartItems.innerHTML = "";
+  let sum = 0;
 
-const total =
-document.getElementById("cart-total");
+  cart.forEach(item => {
+    sum += item.price;
+    cartItems.innerHTML += `<p>${item.name} - $${item.price}</p>`;
+  });
 
-cartItems.innerHTML="";
-
-let sum = 0;
-
-cart.forEach(item => {
-
-sum += item.price;
-
-cartItems.innerHTML += `
-<p>
-${item.name} - $${item.price}
-</p>
-`;
-
-});
-
-total.textContent = sum;
-
+  total.textContent = sum;
 }
 
-displayProducts();
+renderProducts(socks, "products");
+renderProducts(shirts, "shirts");
