@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #111;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 35px;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.hero {
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  background: linear-gradient(90deg, #fff, #ffe6f2, #eee1ff);
+}
+
+.hero h2 {
+  font-size: 64px;
+  margin: 0;
+}
+
+.hero p {
+  font-size: 22px;
+}
+
+.btn, .checkout {
+  background: black;
+  color: white;
+  padding: 14px 24px;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.shop, .cart, .about {
+  padding: 40px;
+  text-align: center;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.product {
+  border: 1px solid #eee;
+  padding: 18px;
+  border-radius: 16px;
+  background: #fafafa;
+}
+
+.product-img {
+  height: 160px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+
+.product button {
+  background: black;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.logo {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.hand {
+  font-size: 28px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #111;
+  color: white;
+}

@@ -1,2 +1,0 @@
-# foryouall
-online store
