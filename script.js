@@ -1,87 +1,155 @@
 const socks = [
-  { name: "White Socks", price: 14, color: "#ffffff", text: "#111" },
-  { name: "Black Socks", price: 14, color: "#050505", text: "#fff" },
-  { name: "Green Socks", price: 14, color: "#168a32", text: "#fff" },
-  { name: "Blue Socks", price: 14, color: "#2868d9", text: "#fff" },
-  { name: "Yellow Socks", price: 14, color: "#ffd400", text: "#111" },
-  { name: "Orange Socks", price: 14, color: "#ff8500", text: "#111" },
-  { name: "Purple Socks", price: 14, color: "#a855c9", text: "#fff" },
-  { name: "Pink Socks", price: 14, color: "#ff9fbc", text: "#111" }
+{
+name:"White Socks",
+price:14,
+image:"images/white-socks.png"
+},
+{
+name:"Black Socks",
+price:14,
+image:"images/black-socks.png"
+},
+{
+name:"Green Socks",
+price:14,
+image:"images/green-socks.png"
+},
+{
+name:"Blue Socks",
+price:14,
+image:"images/blue-socks.png"
+},
+{
+name:"Yellow Socks",
+price:14,
+image:"images/yellow-socks.png"
+},
+{
+name:"Orange Socks",
+price:14,
+image:"images/orange-socks.png"
+},
+{
+name:"Purple Socks",
+price:14,
+image:"images/purple-socks.png"
+},
+{
+name:"Pink Socks",
+price:14,
+image:"images/pink-socks.png"
+}
 ];
 
 const shirts = [
-  { name: "White Shirt", price: 24, color: "#ffffff", text: "#111" },
-  { name: "Pink Shirt", price: 24, color: "#ffb6c9", text: "#111" },
-  { name: "Purple Shirt", price: 24, color: "#c9a3ee", text: "#111" }
+{
+name:"White Shirt",
+price:24,
+image:"images/white-shirt.png"
+},
+{
+name:"Pink Shirt",
+price:24,
+image:"images/pink-shirt.png"
+},
+{
+name:"Purple Shirt",
+price:24,
+image:"images/purple-shirt.png"
+}
 ];
 
 let cart = [];
 
-function sockImage(item) {
-  return `
-    <div class="sock-wrap">
-      <div class="sock" style="background:${item.color}; color:${item.text};">
-        <div class="sock-logo">
-          <div class="hand">🌈✋</div>
-          <div class="tiny-text">For You All</div>
-        </div>
-      </div>
-    </div>
-  `;
+function displayProducts(){
+
+const sockContainer =
+document.getElementById("sock-products");
+
+const shirtContainer =
+document.getElementById("shirt-products");
+
+socks.forEach(product => {
+
+sockContainer.innerHTML += `
+<div class="product-card">
+
+<img src="${product.image}"
+alt="${product.name}">
+
+<h3>${product.name}</h3>
+
+<p>$${product.price}</p>
+
+<button onclick="addToCart('${product.name}',${product.price})">
+Add To Cart
+</button>
+
+</div>
+`;
+
+});
+
+shirts.forEach(product => {
+
+shirtContainer.innerHTML += `
+<div class="product-card">
+
+<img src="${product.image}"
+alt="${product.name}">
+
+<h3>${product.name}</h3>
+
+<p>$${product.price}</p>
+
+<button onclick="addToCart('${product.name}',${product.price})">
+Add To Cart
+</button>
+
+</div>
+`;
+
+});
+
 }
 
-function shirtImage(item) {
-  return `
-    <div class="shirt-wrap">
-      <div class="shirt" style="background:${item.color}; color:${item.text};">
-        <div class="shirt-collar"></div>
-        <div class="shirt-text">For You All</div>
-        <div class="left-sleeve-logo">🌈✋</div>
-      </div>
-    </div>
-  `;
+function addToCart(name,price){
+
+cart.push({
+name,
+price
+});
+
+updateCart();
+
 }
 
-function renderProducts(items, containerId, type) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = "";
+function updateCart(){
 
-  items.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "product";
+const cartItems =
+document.getElementById("cart-items");
 
-    div.innerHTML = `
-      <div class="product-img">
-        ${type === "sock" ? sockImage(item) : shirtImage(item)}
-      </div>
-      <h3>${item.name}</h3>
-      <p>$${item.price}</p>
-      <button onclick="addToCart('${item.name}', ${item.price})">Add to Cart</button>
-    `;
+const total =
+document.getElementById("cart-total");
 
-    container.appendChild(div);
-  });
+cartItems.innerHTML="";
+
+let sum = 0;
+
+cart.forEach(item => {
+
+sum += item.price;
+
+cartItems.innerHTML += `
+<p>
+${item.name} - $${item.price}
+</p>
+`;
+
+});
+
+total.textContent = sum;
+
 }
 
-function addToCart(name, price) {
-  cart.push({ name, price });
-  updateCart();
-}
-
-function updateCart() {
-  const cartItems = document.getElementById("cart-items");
-  const total = document.getElementById("total");
-
-  cartItems.innerHTML = "";
-  let sum = 0;
-
-  cart.forEach(item => {
-    sum += item.price;
-    cartItems.innerHTML += `<p>${item.name} - $${item.price}</p>`;
-  });
-
-  total.textContent = sum;
-}
-
-renderProducts(socks, "products", "sock");
-renderProducts(shirts, "shirts", "shirt");
+displayProducts();
