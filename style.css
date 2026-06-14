@@ -125,3 +125,16 @@
   font-size: 20px;
   transform: rotate(18deg);
 }
+
+.catalog-section {
+  padding: 30px;
+  text-align: center;
+}
+
+.catalog-img {
+  width: 100%;
+  max-width: 1400px;
+  border-radius: 18px;
+  display: block;
+  margin: 0 auto;
+}
