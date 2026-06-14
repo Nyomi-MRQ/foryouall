@@ -1,35 +1,58 @@
 const socks = [
-  { name: "White Socks", price: 14, color: "white", text: "black" },
-  { name: "Black Socks", price: 14, color: "black", text: "white" },
-  { name: "Green Socks", price: 14, color: "green", text: "white" },
-  { name: "Blue Socks", price: 14, color: "royalblue", text: "white" },
-  { name: "Yellow Socks", price: 14, color: "gold", text: "black" },
-  { name: "Orange Socks", price: 14, color: "orange", text: "black" },
-  { name: "Purple Socks", price: 14, color: "mediumorchid", text: "white" },
-  { name: "Pink Socks", price: 14, color: "pink", text: "black" }
+  { name: "White Socks", price: 14, color: "#ffffff", text: "#111" },
+  { name: "Black Socks", price: 14, color: "#050505", text: "#fff" },
+  { name: "Green Socks", price: 14, color: "#168a32", text: "#fff" },
+  { name: "Blue Socks", price: 14, color: "#2868d9", text: "#fff" },
+  { name: "Yellow Socks", price: 14, color: "#ffd400", text: "#111" },
+  { name: "Orange Socks", price: 14, color: "#ff8500", text: "#111" },
+  { name: "Purple Socks", price: 14, color: "#a855c9", text: "#fff" },
+  { name: "Pink Socks", price: 14, color: "#ff9fbc", text: "#111" }
 ];
 
 const shirts = [
-  { name: "White Shirt", price: 24, color: "white", text: "black" },
-  { name: "Pink Shirt", price: 24, color: "pink", text: "black" },
-  { name: "Purple Shirt", price: 24, color: "plum", text: "black" }
+  { name: "White Shirt", price: 24, color: "#ffffff", text: "#111" },
+  { name: "Pink Shirt", price: 24, color: "#ffb6c9", text: "#111" },
+  { name: "Purple Shirt", price: 24, color: "#c9a3ee", text: "#111" }
 ];
 
 let cart = [];
 
-function renderProducts(items, containerId) {
+function sockImage(item) {
+  return `
+    <div class="sock-wrap">
+      <div class="sock" style="background:${item.color}; color:${item.text};">
+        <div class="sock-logo">
+          <div class="hand">🌈✋</div>
+          <div class="tiny-text">For You All</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function shirtImage(item) {
+  return `
+    <div class="shirt-wrap">
+      <div class="shirt" style="background:${item.color}; color:${item.text};">
+        <div class="shirt-collar"></div>
+        <div class="shirt-text">For You All</div>
+        <div class="left-sleeve-logo">🌈✋</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderProducts(items, containerId, type) {
   const container = document.getElementById(containerId);
+  container.innerHTML = "";
 
   items.forEach(item => {
     const div = document.createElement("div");
     div.className = "product";
 
     div.innerHTML = `
-      <div class="product-img" style="background:${item.color}; color:${item.text};">
-        <div>
-          <div class="hand">🌈✋</div>
-          <div class="logo">For You All</div>
-        </div>
+      <div class="product-img">
+        ${type === "sock" ? sockImage(item) : shirtImage(item)}
       </div>
       <h3>${item.name}</h3>
       <p>$${item.price}</p>
@@ -60,5 +83,5 @@ function updateCart() {
   total.textContent = sum;
 }
 
-renderProducts(socks, "products");
-renderProducts(shirts, "shirts");
+renderProducts(socks, "products", "sock");
+renderProducts(shirts, "shirts", "shirt");
